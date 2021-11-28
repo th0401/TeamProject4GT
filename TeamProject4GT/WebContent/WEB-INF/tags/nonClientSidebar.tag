@@ -56,7 +56,7 @@
 						</a>
 					</c:when>
 				</c:choose>
-				<li class="tm-nav-item"><a href="About.jsp" class="tm-nav-link">
+				<li class="tm-nav-item" id="contactUs"><a href="About.jsp" class="tm-nav-link">
 						<i class="far fa-comments"></i> Contact Us
 				</a></li>
 

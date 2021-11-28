@@ -18,7 +18,9 @@ function infoHelp(){
 function ChangeProfile(){
 	window.open("ChangeProfile.jsp","프로필사진변경","width=800px,height=600px");
 }
-function actChange(id){ // 수정버튼 클릭시 바로 수정가능하게 해주는 기능
+
+/*
+function actChange(id){ 
 
 	var main = $('main'); // main , showPost, selectList 에 넣어야함, 이 친구들은 myActive로 넣어야함
 	var loginSignUp = $('loginSignUp');   
@@ -41,7 +43,7 @@ function actChange(id){ // 수정버튼 클릭시 바로 수정가능하게 해�
 	})
 
 }
-
+*/
 
 function rmsgInsert(index){ // 수정버튼 클릭시 바로 수정가능하게 해주는 기능		
 	$('#crInsert'+index).removeClass('dnone');		
@@ -58,7 +60,7 @@ function rmsgEdit(rindex){ // 수정버튼 클릭시 바로 수정가능하게 �
 
 }
 
-function actRemove(){ // 수정버튼 클릭시 바로 수정가능하게 해주는 기능
+function actRemove(){ 
 
 	var main = $('#main'); // main , showPost, selectList 에 넣어야함, 이 친구들은 myActive로 넣어야함
 	var loginSignUp = $('#loginSignUp');   
@@ -72,7 +74,7 @@ function actRemove(){ // 수정버튼 클릭시 바로 수정가능하게 해주
 
 }
 
-$(function(){ // 아코디언
+$(function(){ // 메뉴바 아코디언
 	var $homeMenu = $("#main");
 
 	$homeMenu.mouseover(function(){
