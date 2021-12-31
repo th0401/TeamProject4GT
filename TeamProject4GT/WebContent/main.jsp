@@ -49,7 +49,6 @@
 	<c:choose>
 		<c:when test="${userInfoData==null}">
 			<mytag:nonClientSidebar />
-
 		</c:when>
 
 

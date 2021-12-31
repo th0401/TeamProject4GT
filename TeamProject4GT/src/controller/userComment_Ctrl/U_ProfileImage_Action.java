@@ -43,6 +43,7 @@ public class U_ProfileImage_Action implements Action{
 		ServletContext scontext = request.getSession().getServletContext();
 		realFolder = scontext.getRealPath(savefile);
 
+		
 		try{
 			// 파일 업로드
 			MultipartRequest multi=new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());

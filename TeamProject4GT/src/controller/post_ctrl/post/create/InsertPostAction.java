@@ -44,7 +44,8 @@ public class InsertPostAction implements Action{
 		// 파일이 저장될 서버의 경로
 		ServletContext scontext = request.getSession().getServletContext();
 		realFolder = scontext.getRealPath(savefile);
-		// 
+	
+		
 		PostDAO PDAO = new PostDAO();
 		PostVO PVO = new PostVO();
 		UserInfoVO UVO= new UserInfoVO();
@@ -68,6 +69,8 @@ public class InsertPostAction implements Action{
 			// 업로드 된 파일의 이름 변경하는 로직
 			Path oldfile = Paths.get(realFolder +"/" +filename1);
 			Path newfile = Paths.get(realFolder +"/" +PVO.getPnum()+"_PostImage.jpg"); 
+			System.out.println("oldfile "+oldfile);
+			System.out.println("newfile "+newfile);
 			Files.move(oldfile, newfile, StandardCopyOption.REPLACE_EXISTING);
 			realFolder = "img";
 			String fullpath = realFolder + "/" + PVO.getPnum()+"_PostImage.jpg";

@@ -46,7 +46,7 @@ public class U_JoinUs_Action implements Action{
 	    // 로그인 성공 - session 등록
 	    HttpSession session = request.getSession();
 		session.setAttribute("userInfoData", userInfoData);
-		
+		session.setMaxInactiveInterval(-1);
 		
 	    // 페이지 전송설정
 	    forward.setRedirect(false); // forward

@@ -10,7 +10,7 @@ public class M_Mail  extends Authenticator{
 	// 발신처 이메일 작성
 	public M_Mail() {
 		String mail_id = "4grouptuna@gmail.com"; // 이메일
-		String mail_pw = "$tunagroup";	// 비밀번호
+		String mail_pw = "vtzyrhamiqdoasgq";	// 비밀번호
 		pa = new PasswordAuthentication(mail_id, mail_pw);
 	}
 	public PasswordAuthentication getPasswordAuthentication() {

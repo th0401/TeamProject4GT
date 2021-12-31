@@ -30,6 +30,7 @@ public class SelectOneAction implements Action{
 		UserInfoVO UVO = new UserInfoVO();
 		LikeInfoVO LVO = new LikeInfoVO();
 		LikeInfoDAO LDAO = new LikeInfoDAO();
+		System.out.println("SelectOne123123 "+request.getParameter("pnum"));
 		if(request.getParameter("pnum")!=null) {
 			PVO.setPnum(Integer.parseInt(request.getParameter("pnum"))); // pnum값으로 찾는거니 Pnum만 세팅 후 넘겨줌
 		}
@@ -38,7 +39,7 @@ public class SelectOneAction implements Action{
 		} else {
 			throw new Exception("ViewUp 오류 발생!");
 		}*/
-
+		System.out.println(PVO);
 		// 넘겨줄 날짜 슬라이싱
 		PVO = PDAO.SelectOne(PVO);
 		String pdate = PVO.getPdate();

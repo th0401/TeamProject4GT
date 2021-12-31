@@ -27,7 +27,7 @@ System.out.println("예나 : " + request.getParameter("type"));
 		// DAO수행 필요데이터 SET
 		userInfoVO.setId(request.getParameter("id")+"@"+request.getParameter("mail"));
 		//System.out.println(request.getParameter("id")+"@"+request.getParameter("mail"));
-		
+
 		// DAO 수행
 		userInfoVO = userInfoDAO.Find(userInfoVO);
 		//System.out.println(userInfoVO+"11");

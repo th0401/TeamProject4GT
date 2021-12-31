@@ -22,7 +22,7 @@ public class UserInfoDAO {
 	//private static String sql_FindID = "SELECT * FROM userInfo WHERE id=?";
 	//private static String sql_FindPW = "SELECT * FROM userInfo WHERE id=?";
 	//private static String sql_CheckID = "SELECT * FROM userInfo WHERE id=?";
-	private static String sql_updateProfile = "UPDATE userinfo SET profile=? WHERE id=?";
+	private static String sql_updateProfile = "UPDATE userInfo SET profile=? WHERE id=?";
 	private static String sql_FindInfo = "SELECT * FROM userInfo WHERE id=?";
 
 

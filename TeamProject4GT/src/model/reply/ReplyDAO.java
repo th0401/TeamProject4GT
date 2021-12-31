@@ -13,9 +13,18 @@ public class ReplyDAO {
 	// 기본 비즈니스 로직
 	private static String sql_SELECT_ALL = "SELECT * FROM reply";
 	private static String sql_SELECT_ONE = "SELECT * FROM reply WHERE rnum=?";
-	private static String sql_INSERT = "INSERT INTO reply (rnum, rment, rdate, rwriter, r_user, r_post, r_comments) VALUES((SELECT NVL(MAX(rnum),0) + 1 FROM reply), ?, sysdate, ?, ?, ?, ?)";
+//	MySql sql
+	private static String sql_INSERT = "INSERT INTO reply (rment, rdate, rwriter, r_user, r_post, r_comments) VALUES(?, now(), ?, ?, ?, ?)";
+//	oracle sql
+//	private static String sql_INSERT = "INSERT INTO reply (rnum, rment, rdate, rwriter, r_user, r_post, r_comments) VALUES((SELECT NVL(MAX(rnum),0) + 1 FROM reply), ?, sysdate, ?, ?, ?, ?)";
+	
 	private static String sql_DELETE = "DELETE FROM reply WHERE rnum=?";
-	private static String sql_UPDATE = "UPDATE reply SET rment=?, rdate=sysdate WHERE rnum=?";
+	
+	// MySql sql
+	private static String sql_UPDATE = "UPDATE reply SET rment=?, rdate=now() WHERE rnum=?";
+	
+	// oracle sql
+//	private static String sql_UPDATE = "UPDATE reply SET rment=?, rdate=sysdate WHERE rnum=?";
 
 	// 사용자 정의 함수
 	private static String sql_likeCntUp = "UPDATE reply SET rlikeCnt=rlikeCnt+1 WHERE rnum=?";

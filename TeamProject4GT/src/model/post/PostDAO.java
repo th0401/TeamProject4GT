@@ -16,11 +16,23 @@ public class PostDAO {
 	// 
 	private static String sql_SELECT_ALL = "SELECT * FROM post ORDER BY pnum DESC";
 	private static String sql_SELECT_ONE = "SELECT * FROM post WHERE pnum=?";
+	
+//	MySql sql
 	private static String sql_INSERT = 
-			"INSERT INTO post (pnum, category, title, content, writer, p_user, path)"
-			+ " VALUES((SELECT NVL(MAX(pnum),0) + 1 FROM post), ?, ?, ?, ?, ?, ?)";
+			"INSERT INTO post (category, title, content, writer, p_user, path)"
+			+ " VALUES(?, ?, ?, ?, ?, ?)";
+//	oracle sql
+//	private static String sql_INSERT = 
+//			"INSERT INTO post (pnum, category, title, content, writer, p_user, path)"
+//			+ " VALUES((SELECT NVL(MAX(pnum),0) + 1 FROM post), ?, ?, ?, ?, ?, ?)";
 	private static String sql_DELETE = "DELETE FROM post WHERE pnum=?";
-	private static String sql_UPDATE = "UPDATE post SET category=?, title=?, content=?, writer=?, path=?, pdate=sysdate WHERE pnum=?";
+	
+	// MySql sql
+	private static String sql_UPDATE = "UPDATE post SET category=?, title=?, content=?, writer=?, path=?, pdate=now() WHERE pnum=?";
+	
+	// oracle sql
+//	private static String sql_UPDATE = "UPDATE post SET category=?, title=?, content=?, writer=?, path=?, pdate=sysdate WHERE pnum=?";
+	
 	
 	// 
 	// 
@@ -31,11 +43,21 @@ public class PostDAO {
 
 	//  
 	private static String sql_SELECT_CATEGORY = "SELECT * FROM post WHERE category=? ORDER BY pnum DESC";
-	private static String sql_SELECT_VIEWS = "SELECT * FROM (SELECT * FROM post ORDER BY views DESC) WHERE ROWNUM <= 10";
+	
+	// Mysql sql
+	private static String sql_SELECT_VIEWS = "SELECT * FROM post ORDER BY VIEWS DESC LIMIT 10";
+	
+	// oracle sql
+//	private static String sql_SELECT_VIEWS = "SELECT * FROM (SELECT * FROM post ORDER BY views DESC) WHERE ROWNUM <= 10";
+	
+	
 	private static String sql_SELECT_CATEGORYFORVIEWS = "SELECT * FROM post WHERE category=? ORDER BY views DESC";
 	
-	// 
-	private static String sql_getPnum = "SELECT NVL(MAX(pnum),0) + 1 AS pnum FROM post";
+	// MySql sql
+	private static String sql_getPnum = "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'post' AND table_schema = DATABASE()";
+	
+	// oracle sql 
+//	private static String sql_getPnum = "SELECT NVL(MAX(pnum),0) + 1 AS pnum FROM post";
 	
 	// 
 	private static String sql_SELECT_MYPOST = "SELECT * FROM post WHERE p_user=? ORDER BY pnum DESC";
@@ -393,7 +415,7 @@ public class PostDAO {
 			ResultSet rs = pstmt.executeQuery();
 		
 			if(rs.next()) {
-				result = rs.getInt("pnum");	
+				result = rs.getInt("AUTO_INCREMENT");	
 			}
 			rs.close();
 		}

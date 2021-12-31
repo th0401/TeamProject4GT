@@ -34,6 +34,7 @@ public class EditPostAction implements Action{
 		
 		PVO.setPnum(Integer.parseInt(request.getParameter("pnum")));
 		PVO = PDAO.SelectOne(PVO);
+		System.out.println("EditPostAction : "+PVO);
 		request.setAttribute("singlePost", PVO);
 		action.setPath("EditPost.jsp");
 		action.setRedirect(false);

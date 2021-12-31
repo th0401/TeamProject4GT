@@ -15,9 +15,19 @@ public class CommentsDAO {
 	private static String sql_SELECT_ALL = "SELECT * FROM comments";
 	private static String sql_SELECT_ONE = "SELECT * FROM comments WHERE cnum=?";
 	// 이예나 secretNum 추가
-	private static String sql_INSERT = "INSERT INTO comments (cnum, cment, cdate, cwriter, c_user, c_post, secretNum) VALUES((SELECT NVL(MAX(cnum),0) + 1 FROM comments), ?, sysdate, ?, ?, ?, ?)";
+	
+//	MySql sql
+	private static String sql_INSERT = "INSERT INTO comments (cment, cdate, cwriter, c_user, c_post, secretNum) VALUES(?, now(), ?, ?, ?, ?)";
+	
+//	oracle sql
+//	private static String sql_INSERT = "INSERT INTO comments (cnum, cment, cdate, cwriter, c_user, c_post, secretNum) VALUES((SELECT NVL(MAX(cnum),0) + 1 FROM comments), ?, sysdate, ?, ?, ?, ?)";
 	private static String sql_DELETE = "DELETE FROM comments WHERE cnum=?";
-	private static String sql_UPDATE = "UPDATE comments SET cment=?, cdate=sysdate WHERE cnum=?";
+	
+	// MySql sql
+	private static String sql_UPDATE = "UPDATE comments SET cment=?, cdate=now() WHERE cnum=?";
+	
+	//oracle sql
+//	private static String sql_UPDATE = "UPDATE comments SET cment=?, cdate=sysdate WHERE cnum=?";
 
 	// 사용자 정의 함수
 	private static String sql_SELECT_POST = "SELECT * FROM comments WHERE c_post=? ORDER BY cnum"; // c_post를 받아서 그 글의 댓글들을 리턴

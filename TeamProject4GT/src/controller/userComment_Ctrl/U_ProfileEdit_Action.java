@@ -44,7 +44,8 @@ public class U_ProfileEdit_Action implements Action{
 		// 파일이 저장될 서버의 경로
 		ServletContext scontext = request.getSession().getServletContext();
 		realFolder = scontext.getRealPath(savefile);
-		// 
+		System.out.println(realFolder);
+
 		UserInfoDAO UDAO = new UserInfoDAO();
 		UserInfoVO UVO = new UserInfoVO();
 

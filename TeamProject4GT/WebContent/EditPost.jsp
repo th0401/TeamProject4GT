@@ -76,6 +76,7 @@ window.onload = function(){
 						style="display: block; width: 1000px;" class="mb-5 ctext">
 						<input type="hidden" name="pnum" value="${singlePost.pnum}">
 						<input type="hidden" name="plike" value="${singlePost.plike}">
+						<input type="hidden" name="path" value="${singlePost.path}">
 						<input type="hidden" name="writer" value="${userInfoData.name}">
 						<input type="hidden" name="p_user" value="${userInfoData.id}">
 						<div class="mb-4">
@@ -111,7 +112,7 @@ window.onload = function(){
 						<div>
 						
 						<img src="${singlePost.path}" alt="${userInfoData.id}_미리보기 포스트사진" class="img-fluid"
-						onerror="this.src='img/defaultImage.png'" alt="포스트사진" class="img-fluid"
+						onerror="this.src='img/defaultImage.png'" alt="포스트사진" class="img-fluid" name="path"
 							width="350px" id="preImage">
 							</div>	
 						<div class="text-right">

@@ -31,7 +31,6 @@ public class EditPostDB implements Action{
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
 
-
 		String realFolder = "";
 		String filename1 = "";
 		// 파일 크기 3MB로 제한
@@ -53,6 +52,7 @@ public class EditPostDB implements Action{
 		PVO.setPnum(PDAO.expectPnum());
 		try{
 			// 파일 업로드
+			
 			MultipartRequest multi=new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
 			Enumeration<?> files = multi.getFileNames(); 
 			String file1 = (String)files.nextElement();
@@ -65,17 +65,29 @@ public class EditPostDB implements Action{
 			PVO.setWriter(UVO.getName()); 
 			PVO.setP_user(UVO.getId()); // ID
 			PVO.setTitle(multi.getParameter("title"));
+			System.out.println("EditPostDB : "+filename1);
+			
+			
+			// post 파일 경로 설정
+			if(filename1 == null) { // 사용자가 사진을 변경하지 않았다면
+				System.out.println("filename1이 null : "+multi.getParameter("path"));
+				PVO.setPath(multi.getParameter("path"));
+
+			}else {
+				// 업로드 된 파일의 이름 변경하는 로직
+				Path oldfile = Paths.get(realFolder +"/" +filename1);
+				Path newfile = Paths.get(realFolder +"/" +PVO.getPnum()+"_PostImage.jpg"); 
+				Files.move(oldfile, newfile, StandardCopyOption.REPLACE_EXISTING);
+				realFolder = "img";
+				String fullpath = realFolder + "/" + PVO.getPnum()+"_PostImage.jpg";
+
+				// DB업데이트
+				PVO.setPath(fullpath);
+			}
+	
 			System.out.println(PVO);
 
-			// 업로드 된 파일의 이름 변경하는 로직
-			Path oldfile = Paths.get(realFolder +"/" +filename1);
-			Path newfile = Paths.get(realFolder +"/" +PVO.getPnum()+"_PostImage.jpg"); 
-			Files.move(oldfile, newfile, StandardCopyOption.REPLACE_EXISTING);
-			realFolder = "img";
-			String fullpath = realFolder + "/" + PVO.getPnum()+"_PostImage.jpg";
 
-			// DB업데이트
-			PVO.setPath(fullpath);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -93,6 +105,7 @@ public class EditPostDB implements Action{
 			request.setAttribute("likeInfo", LDAO.SelectOne(LVO)); // 좋아요 정보
 
 			forward.setRedirect(true);
+			System.out.println(" ㅂㅇㅂㅈㄴㅇ ㅇ : "+PVO.getPnum());
 			forward.setPath("selectOne.pdo?pnum="+PVO.getPnum());	
 			return forward;
 		}

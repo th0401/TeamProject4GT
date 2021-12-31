@@ -21,7 +21,7 @@ public class DeleteAction implements Action{
 		PostVO PVO = new PostVO();
 		PVO.setPnum(Integer.parseInt(request.getParameter("pnum")));
 		if (PDAO.DeleteDB(PVO)) {
-			action.setPath("Index.jsp");
+			action.setPath("index.jsp");
 			action.setRedirect(false);
 		} else {
 			try {
